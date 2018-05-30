@@ -93,6 +93,12 @@ function updateScoreBoard(){
     document.getElementById("ties").textContent = score[1];
 }
 
+function updateMatchScoreBoard (){
+
+
+}
+
+
 // The button elements
 var rockButton = document.getElementById("rock");
 var paperButton = document.getElementById("paper");
