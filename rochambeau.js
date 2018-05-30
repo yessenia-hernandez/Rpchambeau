@@ -9,6 +9,8 @@ var choices = ["Rock", "Paper", "Scissors", "Lizard", "Spock"];
 // Variable to store the score
 // score[0] = wins, score[1] = ties, score[2] = losses
 var score = [0,0,0,0,0];
+// matches[0] = my wins, score [1] =  computerwins
+var matches = [0,0]
 
 // Stores the player's choice, then call's the function for storing the computer's choice
 function storePlayerChoice(choice) {
@@ -33,27 +35,33 @@ function playGame(){
     } else if (playerChoice == 0 && (computerChoice == 2 || computerChoice == 4)) {
         // Rock beats scissors - a win!
         updateScore(0);
+        updateMacthes(1);
         displayGameResult("win")
     } else if (playerChoice == 1 && (computerChoice == 0 || computerChoice == 3)) {
         // Paper beats scissors - a win!
         updateScore(0);
+        updateMacthes(1);
         displayGameResult("win")
     } else if (playerChoice == 2 && (computerChoice == 1 || computerChoice == 4)) {
         // Scissors beats paper - a win!
         updateScore(0);
+        updateMacthes(1);
         displayGameResult("win")
          } else if (playerChoice == 3 && (computerChoice == 2 || computerChoice == 4)) {
         // Rock beats scissors - a win!
         updateScore(0);
+             updateMacthes(1);
         displayGameResult("win")
          } else if (playerChoice == 4 && (computerChoice == 3 || computerChoice == 0)) {
         // Rock beats scissors - a win!
         updateScore(0);
+             updateMacthes(1);
         displayGameResult("win")
     } else {
         // All other combinations are losses
         updateScore(2);
         displayGameResult("lose")
+        updateMacthes(0);
     }
 }
 
@@ -78,6 +86,7 @@ function displayGameResult(result){
     }
 
     updateScoreBoard();
+    updateMacthScoreBoard();
 }
 
 // Updates the score
@@ -86,6 +95,12 @@ function updateScore(val){
     console.log("The score is now " + score);
 }
 
+function updateMatch(val){
+    ++match[val];
+    console.log("The Match score is now " + score);
+}
+
+
 // Function for displaying the score
 function updateScoreBoard(){
     document.getElementById("wins").textContent = score[0];
@@ -93,11 +108,11 @@ function updateScoreBoard(){
     document.getElementById("ties").textContent = score[1];
 }
 
-function updateMatchScoreBoard (){
-
-
+// Function for displaying the score
+function updateScoreBoard(){
+    document.getElementById("myMatcheswon").textContent = score[0];
+    document.getElementById("computerMatcheswon").textContent = score[1];
 }
-
 
 // The button elements
 var rockButton = document.getElementById("rock");
