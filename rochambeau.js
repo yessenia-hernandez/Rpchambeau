@@ -35,22 +35,22 @@ function playGame(){
     } else if (playerChoice == 0 && (computerChoice == 2 || computerChoice == 4)) {
         // Rock beats scissors - a win!
         updateScore(0);
-        updateMacthes(1);
+        updateMacth(1);
         displayGameResult("win")
     } else if (playerChoice == 1 && (computerChoice == 0 || computerChoice == 3)) {
         // Paper beats scissors - a win!
         updateScore(0);
-        updateMacthes(1);
+        updateMacth(1);
         displayGameResult("win")
     } else if (playerChoice == 2 && (computerChoice == 1 || computerChoice == 4)) {
         // Scissors beats paper - a win!
         updateScore(0);
-        updateMacthes(1);
+        updateMacth(1);
         displayGameResult("win")
          } else if (playerChoice == 3 && (computerChoice == 2 || computerChoice == 4)) {
         // Rock beats scissors - a win!
         updateScore(0);
-             updateMacthes(1);
+             updateMacth(1);
         displayGameResult("win")
          } else if (playerChoice == 4 && (computerChoice == 3 || computerChoice == 0)) {
         // Rock beats scissors - a win!
@@ -61,7 +61,7 @@ function playGame(){
         // All other combinations are losses
         updateScore(2);
         displayGameResult("lose")
-        updateMacthes(0);
+        updateMacth(0);
     }
 }
 
@@ -86,7 +86,7 @@ function displayGameResult(result){
     }
 
     updateScoreBoard();
-    updateMacthScoreBoard();
+    updateMatchScoreBoard();
 }
 
 // Updates the score
@@ -96,8 +96,8 @@ function updateScore(val){
 }
 
 function updateMatch(val){
-    ++match[val];
-    console.log("The Match score is now " + score);
+    ++matches[val];
+    console.log("The Match score is now " + matches);
 }
 
 
@@ -109,9 +109,9 @@ function updateScoreBoard(){
 }
 
 // Function for displaying the score
-function updateScoreBoard(){
-    document.getElementById("myMatcheswon").textContent = score[0];
-    document.getElementById("computerMatcheswon").textContent = score[1];
+function updateMatchScoreBoard(){
+    document.getElementById("myMatcheswon").textContent = matches[0];
+    document.getElementById("computerMatcheswon").textContent = matches[1];
 }
 
 // The button elements
