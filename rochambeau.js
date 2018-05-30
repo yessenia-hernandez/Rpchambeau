@@ -8,7 +8,7 @@ var choices = ["Rock", "Paper", "Scissors", "Lizard", "Spock"];
 
 // Variable to store the score
 // score[0] = wins, score[1] = ties, score[2] = losses
-var score = [0,0,0];
+var score = [0,0,0,0,0];
 
 // Stores the player's choice, then call's the function for storing the computer's choice
 function storePlayerChoice(choice) {
@@ -30,16 +30,24 @@ function playGame(){
         // We have a tie!
         updateScore(1);
         displayGameResult("tie")
-    } else if (playerChoice == 0 && computerChoice == 2) {
+    } else if (playerChoice == 0 && (computerChoice == 2 || computerChoice == 4)) {
         // Rock beats scissors - a win!
         updateScore(0);
         displayGameResult("win")
-    } else if (playerChoice == 1 && computerChoice == 0) {
+    } else if (playerChoice == 1 && (computerChoice == 0 || computerChoice == 3)) {
         // Paper beats scissors - a win!
         updateScore(0);
         displayGameResult("win")
-    } else if (playerChoice == 2 && computerChoice == 1) {
+    } else if (playerChoice == 2 && (computerChoice == 1 || computerChoice == 4)) {
         // Scissors beats paper - a win!
+        updateScore(0);
+        displayGameResult("win")
+         } else if (playerChoice == 3 && (computerChoice == 2 || computerChoice == 4)) {
+        // Rock beats scissors - a win!
+        updateScore(0);
+        displayGameResult("win")
+         } else if (playerChoice == 4 && (computerChoice == 3 || computerChoice == 0)) {
+        // Rock beats scissors - a win!
         updateScore(0);
         displayGameResult("win")
     } else {
@@ -89,10 +97,14 @@ function updateScoreBoard(){
 var rockButton = document.getElementById("rock");
 var paperButton = document.getElementById("paper");
 var scissorsButton = document.getElementById("scissors");
+var lizardButton = document.getElementById("lizard");
+var spockButton = document.getElementById("spock");
 var playButton = document.getElementById("play");
 
 // Add the event handlers
 rockButton.addEventListener('click', () => {storePlayerChoice(0)});
 paperButton.addEventListener('click', () => {storePlayerChoice(1)});
 scissorsButton.addEventListener('click', () => {storePlayerChoice(2)});
+lizardButton.addEventListener('click', () => {storePlayerChoice(3)});
+spockButton.addEventListener('click', () => {storePlayerChoice(4)});
 playButton.addEventListener('click', () => {playGame()});
