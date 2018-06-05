@@ -5,8 +5,15 @@ var choices = ["Rock", "Paper", "Scissors", "Lizard", "Spock"];
 
 // Variable to store the score
 // score[0] = wins, score[1] = ties, score[2] = losses
-var score = [0, 0, 0];
-var matches = [0, 0];
+var score = {
+    wins: 0,
+    losses: 0,
+    ties: 0
+};
+var matches = {
+wins: 0,
+    losses: 0
+};
 
 // Stores the player's choice, then call's the function for storing the computer's choice
 function storePlayerChoice(choice) {
@@ -49,13 +56,13 @@ function playGame() {
 
 
 
-if (score[0] == 2) {
-    updateMatch(0);
-    score = [0, 0, 0];
-} else if (score[2] == 2) {
-    updateMatch(1);
-    score = [0, 0, 0];
-}
+    if (score[0] == 2) {
+        updateMatch(0);
+        score = [0, 0, 0];
+    } else if (score[2] == 2) {
+        updateMatch(1);
+        score = [0, 0, 0];
+    }
 
 }
 //Displays the result of the game
