@@ -1,5 +1,8 @@
-var playerChoice;
-var computerChoice;
+function Player() {
+    this.choice = null;
+}
+var player = new Player();
+var computer = new Player();
 
 var choices = ["Rock", "Paper", "Scissors", "Lizard", "Spock"];
 
@@ -11,47 +14,47 @@ var score = {
     ties: 0
 };
 var matches = {
-wins: 0,
+    matchwins: 0,
     losses: 0
 };
 
 // Stores the player's choice, then call's the function for storing the computer's choice
 function storePlayerChoice(choice) {
-    playerChoice = choice;
-    console.log("My choice = " + choice);
+    player.choice = choice;
+    console.log("My choice = " + player.choice);
     storeComputerChoice();
 }
 
-// Generate computer's random choice
+// Generate the computer's random choice
 function storeComputerChoice() {
-    computerChoice = Math.floor(Math.random() * 5);
-    console.log("Computer choice = " + computerChoice);
+    // Generate computer's random choice
+    computer.choice = Math.floor(Math.random()*3);
+    console.log("Computer choice = " + computer.choice);
 }
 
 // This is the function for playing the game
 function playGame() {
+    // Here is the game ruleset algorithm
     if (playerChoice == computerChoice) {
-        updateScore(1);
-        displayGameResult("tie");
-    } else if (playerChoice == 0 && (computerChoice == 2 || computerChoice == 4)) {
-        updateScore(0);
-        displayGameResult("win");
-    } else if (playerChoice == 1 && (computerChoice == 0 || computerChoice == 3)) {
-        updateScore(0);
-        displayGameResult("win");
-    } else if (playerChoice == 2 && (computerChoice == 1 || computerChoice == 4)) {
-        updateScore(0);
-        displayGameResult("win");
-    } else if (playerChoice == 3 && (computerChoice == 2 || computerChoice == 4)) {
-        updateScore(0);
-        displayGameResult("win");
-    } else if (playerChoice == 4 && (computerChoice == 3 || computerChoice == 0)) {
-        updateScore(0);
-        displayGameResult("win");
+        // We have a tie!
+        ++score.ties;
+        displayGameResult("tie")
+    } else if (playerChoice == choices.ROCK && computerChoice == choices.SCISSORS) {
+        // Rock beats scissors - a win!
+        ++score.wins;
+        displayGameResult("win")
+    } else if (playerChoice == choices.PAPER && computerChoice == choices.ROCK) {
+        // Paper beats rock - a win!
+        ++score.wins;
+        displayGameResult("win")
+    } else if (playerChoice == choices.SCISSORS && computerChoice == choices.PAPER) {
+        // Scissors beats paper - a win!
+        ++score.wins;
+        displayGameResult("win")
     } else {
-        updateScore(2);
-        displayGameResult("lose");
-
+        // All other combinations are losses
+        ++score.losses;
+        displayGameResult("lose")
     }
 
 
@@ -104,13 +107,12 @@ function updateMatch(a) {
 
 
 // Function for displaying the score
-function updateScoreBoard() {
-    document.getElementById("wins").textContent = score[0];
-    document.getElementById("losses").textContent = score[2];
-    document.getElementById("ties").textContent = score[1];
-
-    document.getElementById("matchwins").textContent = matches[0];
-    document.getElementById("matchlosses").textContent = matches[1];
+function displayScoreBoard(winsId, lossesId, tiesId) {
+    document.getElementById("wins").textContent = score.wins;
+    document.getElementById("losses").textContent = score.losses;
+    document.getElementById("ties").textContent = score.ties;
+    document.getElementById("matchwins").textContent = matches.matchwins;
+    document.getElementById("matchlosses").textContent = matches.matchlosses;
 }
 
 
