@@ -7,7 +7,9 @@ var computer = new Player();
 var choices  = {
     ROCK: 0,
     PAPER: 1,
-    SCISSORS: 2
+    SCISSORS: 2,
+    LIZARD: 3,
+    SPOCK: 4
 }
 
 // Variable to store the score
@@ -43,15 +45,15 @@ function playGame() {
         // We have a tie!
         ++score.ties;
         displayGameResult("tie")
-    } else if (playerChoice == computerChoice) {
+    } else if (playerChoice == choices.ROCK && (computerChoice == choices.SCISSORS || computerChoice == choices.LIZARD)) {
         // Rock beats scissors - a win!
         ++score.wins;
         displayGameResult("win")
-    } else if (playerChoice == 1 && computerChoice == 0) {
+    } else if (playerChoice == choices.PAPER && (computerChoice == choices.ROCK || computerChoice == choices.SPOCK)) {
         // Paper beats rock - a win!
         ++score.wins;
         displayGameResult("win")
-    } else if (playerChoice == 2 && computerChoice == 1) {
+    } else if (playerChoice == choices.SCISSORS && (computerChoice == choices.PAPER || computerChoice == choices.LIZARD)) {
         // Scissors beats paper - a win!
         ++score.wins;
         displayGameResult("win")
