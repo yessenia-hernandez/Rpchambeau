@@ -1,42 +1,64 @@
 function Player() {
     this.choice = null;
 }
-var player = new Player();
-var computer = new Player();
 
-var choices  = {
-    ROCK: 0,
-    PAPER: 1,
-    SCISSORS: 2,
-    LIZARD: 3,
-    SPOCK: 4
+var Rochambeau = {
+
+
+    // button elements
+    rockButton: document.getElementById("rock"),
+    paperButton: document.getElementById("paper"),
+    scissorsButton: document.getElementById("scissors"),
+    lizardButton: document.getElementById("lizard"),
+    spockButton: document.getElementById("spock"),
+
+    playButton: document.getElementById("play"),
+
+    player: new Player(),
+    computer: new Player(),
+
+
+    choices: {
+        ROCK: 0,
+        PAPER: 1,
+        SCISSORS: 2,
+        LIZAR: 3,
+        SPOCK: 4,
+
+    },
+
+    score: {
+        wins: 0,
+        losses: 0,
+        ties: 0
+    },
+
+    matches: {
+        wins: 0,
+        losses: 0,
+    },
+    results: {
+        WIN: 1,
+        TIE: 0,
+        LOSS: -1
+    },
+
+    // Stores the player's choice, then call's the function for storing the computer's choice
+    storePlayerChoice: function (choice) {
+        Rochambeau.player.choice = choice;
+        console.log("My choice = " + Rochambeau.player.choice);
+        Rochambeau.storeComputerChoice();
+    },
+
+    // Generate the computer's random choice
+    storeComputerChoice: function () {
+        this.computer.choice = Math.floor(Math.random() * 5);
+    },
+
+
 }
 
-// Variable to store the score
-// score[0] = wins, score[1] = ties, score[2] = losses
-var score = {
-    wins: 0,
-    losses: 0,
-    ties: 0
-};
-var matches = {
-    matchwins: 0,
-    losses: 0
-};
 
-// Stores the player's choice, then call's the function for storing the computer's choice
-function storePlayerChoice(choice) {
-    player.choice = choice;
-    console.log("My choice = " + player.choice);
-    storeComputerChoice();
-}
-
-// Generate the computer's random choice
-function storeComputerChoice() {
-    // Generate computer's random choice
-    computer.choice = Math.floor(Math.random() * 3);
-    console.log("Computer choice = " + computer.choice);
-}
 
 // This is the function for playing the game
 function playGame() {
@@ -57,10 +79,10 @@ function playGame() {
         // Scissors beats paper - a win!
         ++score.wins;
         displayGameResult("win")
-    } else if (playerChoice == 3 && (computerChoice == 2 || computerChoice == 4)) {
+    } else if (playerChoice == choices.LIZARD && (computerChoice == choice.LIZARD || computerChoice == choices.SPOCK)) {
         ++score.wins;
         displayGameResult("win")
-    } else if (playerChoice == 4 && (computerChoice == 3 || computerChoice == 0)) {
+    } else if (playerChoice == choices.SPOCK && (computerChoice == choices.LIZARD || computerChoice == choices.ROCK)) {
         ++score.wins;
         displayGameResult("win")
     } else {
@@ -74,6 +96,7 @@ function playGame() {
         updateMatch(0);
         score = [0, 0, 0];
     } else if (score[2] == 2) {
+        ++
         updateMatch(1);
         score = [0, 0, 0];
     }
@@ -126,14 +149,6 @@ function displayScoreBoard(winsId, lossesId, tiesId) {
     document.getElementById("matchlosses").textContent = matches.matchlosses;
 }
 
-
-// The button elements
-var rockButton = document.getElementById("rock");
-var paperButton = document.getElementById("paper");
-var scissorsButton = document.getElementById("scissors");
-var lizardButton = document.getElementById("lizard");
-var spockButton = document.getElementById("spock");
-var playButton = document.getElementById("play");
 
 // Add the event handlers
 rockButton.addEventListener('click', () => {
