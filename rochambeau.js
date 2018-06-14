@@ -30,6 +30,14 @@ var Rochambeau = {
         ties: 0
     },
 
+      choiceNames: {
+        0: "Rock",
+        1: "Paper",
+        2: "Scissors",
+        3: "Lizard",
+        4: "Spock"
+    },
+
     match: {
         wins: 0,
         losses: 0
