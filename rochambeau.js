@@ -24,19 +24,20 @@ var Rochambeau = {
         SPOCK: 4
     },
 
-    score: {
-        wins: 0,
-        losses: 0,
-        ties: 0
-    },
-
-      choiceNames: {
+       choiceNames: {
         0: "Rock",
         1: "Paper",
         2: "Scissors",
         3: "Lizard",
         4: "Spock"
     },
+
+    score: {
+        wins: 0,
+        losses: 0,
+        ties: 0
+    },
+
 
     match: {
         wins: 0,
